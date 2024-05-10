@@ -54,13 +54,13 @@ open class DataStorePrototype: DataStore, Mock {
     }
 
     public var isReady: Bool {
-		get {	invocations.append(.p_isReady_get); return __p_isReady ?? givenGetterValue(.p_isReady_get, "DataStorePrototype - stub value for isReady was not defined") }
+		get {	addInvocation(.p_isReady_get); return __p_isReady ?? givenGetterValue(.p_isReady_get, "DataStorePrototype - stub value for isReady was not defined") }
 	}
 	private var __p_isReady: (Bool)?
 
     public var name: String {
-		get {	invocations.append(.p_name_get); return __p_name ?? givenGetterValue(.p_name_get, "DataStorePrototype - stub value for name was not defined") }
-		set {	invocations.append(.p_name_set(.value(newValue))); __p_name = newValue }
+		get {	addInvocation(.p_name_get); return __p_name ?? givenGetterValue(.p_name_get, "DataStorePrototype - stub value for name was not defined") }
+		set {	addInvocation(.p_name_set(.value(newValue))); __p_name = newValue }
 	}
 	private var __p_name: (String)?
 
