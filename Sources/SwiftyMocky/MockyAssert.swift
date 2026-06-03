@@ -1,6 +1,9 @@
 #if canImport(XCTest)
 import XCTest
 #endif
+#if canImport(Testing)
+import Testing
+#endif
 import Foundation
 
 /// You can use this class if there is need to define custom
@@ -48,6 +51,22 @@ private func XCTMockyAssert(
     file: StaticString = #file,
     line: UInt = #line
 ) {
+    #if canImport(Testing)
+    if Test.current != nil {
+        if !expression() {
+            Issue.record(
+                Comment(rawValue: message()),
+                sourceLocation: SourceLocation(
+                    fileID: "",
+                    filePath: file.description,
+                    line: Int(line),
+                    column: 0
+                )
+            )
+        }
+        return
+    }
+    #endif
     #if canImport(XCTest)
     XCTAssert(expression(), message(), file: file, line: line)
     #else

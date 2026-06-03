@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(Testing)
+import Testing
+#endif
 #if canImport(XCTest)
 import XCTest
 
@@ -47,6 +50,20 @@ public class SwiftyMockyTestObserver: NSObject, XCTestObservation {
     ///   - file: File
     ///   - line: Line
     public static func handleFatalError(message: String, file: StaticString, line: UInt) {
+        #if canImport(Testing)
+        if Test.current != nil {
+            Issue.record(
+                Comment(rawValue: message),
+                sourceLocation: SourceLocation(
+                    fileID: "",
+                    filePath: file.description,
+                    line: Int(line),
+                    column: 0
+                )
+            )
+            return
+        }
+        #endif
         guard let testCase = SwiftyMockyTestObserver.currentTestCase else {
             return XCTFail(message, file: file, line: line)
         }

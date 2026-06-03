@@ -1,4 +1,4 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -53,7 +53,7 @@ let package = Package(
             dependencies: ["SwiftyMocky"]
         ),
         // CLI Executable
-        .target(
+        .executableTarget(
             name: "SwiftyMockyCLI",
             dependencies: [
                 "Commander",
@@ -66,7 +66,7 @@ let package = Package(
             dependencies: [
                 "ShellOut",
                 "Chalk",
-                "XcodeProj",
+                .product(name: "XcodeProj", package: "xcodeproj"),
                 "PathKit",
                 "Yams",
             ],

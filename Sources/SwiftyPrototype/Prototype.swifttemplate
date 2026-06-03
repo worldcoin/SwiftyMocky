@@ -357,10 +357,11 @@ class ParameterWrapper {
     }
 
     func asMethodArgument() -> String {
+        let typeName = fixExistentialOptional("\(parameter.typeName)")
         if parameter.argumentLabel != parameter.name {
-            return "\(parameter.argumentLabel ?? "_") \(parameter.name): \(parameter.typeName)"
+            return "\(parameter.argumentLabel ?? "_") \(parameter.name): \(typeName)"
         } else {
-            return "\(parameter.name): \(parameter.typeName)"
+            return "\(parameter.name): \(typeName)"
         }
     }
     func labelAndName() -> String {
@@ -388,20 +389,23 @@ class TypeWrapper {
     var unwrappedReplacingSelf: String {
         return replacingSelf(unwrap: true)
     }
+    private func wrapIfExistential(_ name: String) -> String {
+        return name.hasPrefix("any ") ? "(\(name))" : name
+    }
     var stripped: String {
         if type.isImplicitlyUnwrappedOptional {
-            return "\(vPref)\(unwrappedReplacingSelf)?\(vSuff)"
+            return "\(vPref)\(wrapIfExistential(unwrappedReplacingSelf))?\(vSuff)"
         } else if type.isOptional {
-            return "\(vPref)\(unwrappedReplacingSelf)?\(vSuff)"
+            return "\(vPref)\(wrapIfExistential(unwrappedReplacingSelf))?\(vSuff)"
         } else {
             return "\(vPref)\(unwrappedReplacingSelf)\(vSuff)"
         }
     }
     var nestedParameter: String {
         if type.isImplicitlyUnwrappedOptional {
-            return "Parameter<\(vPref)\(unwrappedReplacingSelf)?\(vSuff)>"
+            return "Parameter<\(vPref)\(wrapIfExistential(unwrappedReplacingSelf))?\(vSuff)>"
         } else if type.isOptional {
-            return "Parameter<\(vPref)\(unwrappedReplacingSelf)?\(vSuff)>"
+            return "Parameter<\(vPref)\(wrapIfExistential(unwrappedReplacingSelf))?\(vSuff)>"
         } else {
             return "Parameter<\(vPref)\(unwrappedReplacingSelf)\(vSuff)>"
         }
@@ -457,7 +461,7 @@ class TypeWrapper {
 
     func replacingSelf(unwrap: Bool = false) -> String {
         guard isSelfTypeRecursive() else {
-            return unwrap ? self.unwrapped : "\(type)"
+            return unwrap ? self.unwrapped : fixExistentialOptional("\(type)")
         }
 
         if isSelfType {
@@ -494,7 +498,7 @@ class TypeWrapper {
             let value = "(\(inner)) \(throwing)-> \(returnType)"
             return value
         } else {
-            return (unwrap ? self.unwrapped : "\(type)")
+            return (unwrap ? self.unwrapped : fixExistentialOptional("\(type)"))
         }
     }
 
@@ -544,11 +548,22 @@ func replacingSelf(_ value: String) -> String {
         .replacingOccurrences(of: ",Self?", with: ",\(Current.selfType)?")
 }
 
+/// Sourcery normalises `(any Foo)?` → `any Foo?` in TypeName.name.
+/// This function reverses that so the generated output is valid Swift.
+func fixExistentialOptional(_ typeName: String) -> String {
+    guard typeName.contains("any ") else { return typeName }
+    guard let regex = try? NSRegularExpression(
+        pattern: #"\bany ([A-Za-z_][A-Za-z0-9_.]*)([\?!])"#
+    ) else { return typeName }
+    let range = NSRange(typeName.startIndex..., in: typeName)
+    return regex.stringByReplacingMatches(in: typeName, range: range, withTemplate: "(any $1)$2")
+}
+
 class MethodWrapper {
     private var noStubDefinedMessage: String {
-        let methodName = method.name.condenseWhitespace()
+        let methodName = fixExistentialOptional(method.name.condenseWhitespace()
             .replacingOccurrences(of: "( ", with: "(")
-            .replacingOccurrences(of: " )", with: ")")
+            .replacingOccurrences(of: " )", with: ")"))
         return "Stub return value not specified for \(methodName). Use given"
     }
     private static var registered: [String: Int] = [:]
@@ -663,7 +678,7 @@ class MethodWrapper {
         } else if returnsGenericConstrainedToSelf {
             return "\(attributes)\(staticModifier)func \(method.shortName)\(params) \(asyncModifier)\(throwing)-> \(returnTypeReplacingSelf) "
         } else {
-            return "\(attributes)\(staticModifier)func \(method.shortName)\(params) \(asyncModifier)\(throwing)-> \(method.returnTypeName.name) "
+            return "\(attributes)\(staticModifier)func \(method.shortName)\(params) \(asyncModifier)\(throwing)-> \(fixExistentialOptional(method.returnTypeName.name)) "
         }
     }
     var invocation: String {
@@ -1512,7 +1527,7 @@ class VariableWrapper {
     var prototype: String {
         let staticModifier = variable.isStatic ? "static " : ""
 
-        return "\(attributes)\(staticModifier)var \(variable.name): \(variable.typeName.name) {" +
+        return "\(attributes)\(staticModifier)var \(variable.name): \(fixExistentialOptional(variable.typeName.name)) {" +
             "\(getter)" +
             "\(setter)" +
         "\n\t}"
