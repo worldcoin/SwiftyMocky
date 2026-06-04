@@ -49,7 +49,7 @@ let package = Package(
             exclude: ["Shared/Swift5.5"] // TODO: remove when macOS 12 released
         ),
         .testTarget(
-            name: "RuntimeLibaryTests",
+            name: "RuntimeLibraryTests",
             dependencies: ["SwiftyMocky"]
         ),
         // CLI Executable

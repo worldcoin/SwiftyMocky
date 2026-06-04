@@ -49,13 +49,13 @@ public class SwiftyMockyTestObserver: NSObject, XCTestObservation {
     ///   - message: Message
     ///   - file: File
     ///   - line: Line
-    public static func handleFatalError(message: String, file: StaticString, line: UInt) {
+    public static func handleFatalError(message: String, file: StaticString, fileID: String, line: UInt) {
         #if canImport(Testing)
         if Test.current != nil {
             Issue.record(
                 Comment(rawValue: message),
                 sourceLocation: SourceLocation(
-                    fileID: "",
+                    fileID: fileID,
                     filePath: file.description,
                     line: Int(line),
                     column: 0
@@ -71,7 +71,7 @@ public class SwiftyMockyTestObserver: NSObject, XCTestObservation {
         let continueAfterFailure = testCase.continueAfterFailure
         defer { testCase.continueAfterFailure = continueAfterFailure }
         testCase.continueAfterFailure = false
-        let methodName = getNameOfExtecutedTestCase(testCase)
+        let methodName = getNameOfExecutedTestCase(testCase)
         if let name = methodName, let failingLine = FilesExlorer().findTestCaseLine(for: name, file: file) {
             testCase.record(XCTIssue(
                 type: .system,
@@ -88,11 +88,11 @@ public class SwiftyMockyTestObserver: NSObject, XCTestObservation {
         }
     }
 
-    /// [Internal] Geting name of current test
+    /// [Internal] Getting name of current test
     ///
     /// - Parameter testCase: Test case
     /// - Returns: Name
-    private static func getNameOfExtecutedTestCase(_ testCase: XCTestCase) -> String? {
+    private static func getNameOfExecutedTestCase(_ testCase: XCTestCase) -> String? {
         return testCase.name.components(separatedBy: " ")[1].components(separatedBy: "]").first
     }
 }

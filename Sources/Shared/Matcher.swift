@@ -6,12 +6,14 @@ public class Matcher {
     public static var `default` = Matcher()
     /// [Internal] Matchers storage
     private var matchers: [(Mirror,Any)] = []
-    /// [Internal] file where comparison faiure should be recorded
+    /// [Internal] file where comparison failure should be recorded
     private var file: StaticString?
-    /// [Internal] line where comparison faiure should be recorded
+    /// [Internal] fileID where comparison failure should be recorded
+    private var fileID: String?
+    /// [Internal] line where comparison failure should be recorded
     private var line: UInt?
     /// [Internal] matcher fatal error handler
-    public static var fatalErrorHandler: (String, StaticString, UInt) -> Void = { _,_,_ in}
+    public static var fatalErrorHandler: (String, StaticString, String, UInt) -> Void = { _,_,_,_ in}
 
     /// Create new clean matcher instance.
     public init() {
@@ -192,22 +194,23 @@ public class Matcher {
         register(Data?.Type.self)
     }
 
-    public func set(file: StaticString?, line: UInt?) {
+    public func set(file: StaticString?, fileID: String? = nil, line: UInt?) {
         self.file = file
+        self.fileID = fileID
         self.line = line
     }
 
-    public func setupCorrentFileAndLine(file: StaticString = #file, line: UInt = #line) {
-        self.set(file: file, line: line)
+    public func setupCurrentFileAndLine(file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
+        self.set(file: file, fileID: fileID, line: line)
     }
 
     public func clearFileAndLine() {
-        self.set(file: nil, line: nil)
+        self.set(file: nil, fileID: nil, line: nil)
     }
 
     public func onFatalFailure(_ message: String) {
         guard let file = self.file, let line = self.line else { return }
-        Matcher.fatalErrorHandler(message, file, line)
+        Matcher.fatalErrorHandler(message, file, self.fileID ?? "", line)
     }
 
     /// Registers comparator for given type **T**.

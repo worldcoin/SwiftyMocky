@@ -22,16 +22,17 @@ public final class MockyAssertion {
 /// - Parameters:
 ///   - expression: Expression to assert on
 ///   - message: Message
-///   - file: File name (levae default)
-///   - line: Line (levae default)
+///   - file: File name (leave default)
+///   - line: Line (leave default)
 public func MockyAssert(
     _ expression: @autoclosure () -> Bool,
     _ message: @autoclosure () -> String = "Verify failed",
     file: StaticString = #file,
+    fileID: String = #fileID,
     line: UInt = #line
 ) {
     guard let handler = MockyAssertion.handler else {
-        return XCTMockyAssert(expression(), message(), file: file, line: line)
+        return XCTMockyAssert(expression(), message(), file: file, fileID: fileID, line: line)
     }
 
     handler(expression(), message(), file, line)
@@ -43,12 +44,13 @@ public func MockyAssert(
 /// - Parameters:
 ///   - expression: Expression to assert on
 ///   - message: Message
-///   - file: File name (levae default)
-///   - line: Line (levae default)
+///   - file: File name (leave default)
+///   - line: Line (leave default)
 private func XCTMockyAssert(
     _ expression: @autoclosure () -> Bool,
     _ message: @autoclosure () -> String = "Verify failed",
     file: StaticString = #file,
+    fileID: String = #fileID,
     line: UInt = #line
 ) {
     #if canImport(Testing)
@@ -57,7 +59,7 @@ private func XCTMockyAssert(
             Issue.record(
                 Comment(rawValue: message()),
                 sourceLocation: SourceLocation(
-                    fileID: "",
+                    fileID: fileID,
                     filePath: file.description,
                     line: Int(line),
                     column: 0
