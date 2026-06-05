@@ -241,6 +241,11 @@
         <%= method.givenProduceConstructorNameThrows(prefix: "Static") -%> {
             <%= method.givenProduceConstructorThrows(prefix: "Static") _%>
         }
+        <%_ if method.method.returnTypeName.isVoid { -%>
+        <%= method.givenSucceedConstructorName(prefix: "Static") -%> {
+            <%= method.givenSucceedConstructor(prefix: "Static") _%>
+        }
+        <%_ } -%>
         <%_ } %> <%_ -%>
     }
 
@@ -356,6 +361,11 @@
         <%= method.givenProduceConstructorNameThrows() -%> {
             <%= method.givenProduceConstructorThrows() _%>
         }
+        <%_ if method.method.returnTypeName.isVoid { -%>
+        <%= method.givenSucceedConstructorName() -%> {
+            <%= method.givenSucceedConstructor() _%>
+        }
+        <%_ } -%>
         <%_ } %> <%_ -%>
     }
 

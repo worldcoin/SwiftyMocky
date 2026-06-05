@@ -451,6 +451,25 @@ class MethodWrapper {
         }
     }
 
+    // Given succeed — throws Void methods only; stubs success without needing willProduce: { $0.return(()) }
+    func givenSucceedConstructorName(prefix: String = "") -> String {
+        let (annotation, _, _) = methodInfo()
+        let clauseConstraints = whereClauseExpression()
+        if filteredParameters.isEmpty {
+            return "\(annotation)public static func \(method.shortName)(willReturn: Void) -> \(prefix)MethodStub" + clauseConstraints
+        } else {
+            return "\(annotation)public static func \(method.shortName)(\(parametersForProxySignature()), willReturn: Void) -> \(prefix)MethodStub" + clauseConstraints
+        }
+    }
+
+    func givenSucceedConstructor(prefix: String = "") -> String {
+        if filteredParameters.isEmpty {
+            return "return \(prefix)Given(method: .\(prototype), products: [.return(())])"
+        } else {
+            return "return \(prefix)Given(method: .\(prototype)(\(parametersForProxyInit())), products: [.return(())])"
+        }
+    }
+
     // Given willProduce
     func givenProduceConstructorName(prefix: String = "") -> String {
         let returnTypeString = givenReturnTypeString()

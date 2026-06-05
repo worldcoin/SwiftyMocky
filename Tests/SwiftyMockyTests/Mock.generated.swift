@@ -263,6 +263,9 @@ open class AMassiveTestProtocolMock: AMassiveTestProtocol, Mock, StaticMock {
 			willProduce(stubber)
 			return given
         }
+        public static func methodThatThrows(willReturn: Void) -> StaticMethodStub {
+            return StaticGiven(method: .sm_methodThatThrows, products: [.return(())])
+        }
         public static func methodThatReturnsAndThrows(param: Parameter<String>, willThrow: Error...) -> StaticMethodStub {
             return StaticGiven(method: .sm_methodThatReturnsAndThrows__param_param(`param`), products: willThrow.map({ StubProduct.throw($0) }))
         }
@@ -406,6 +409,9 @@ open class AMassiveTestProtocolMock: AMassiveTestProtocol, Mock, StaticMock {
 			let stubber = given.stubThrows(for: (Void).self)
 			willProduce(stubber)
 			return given
+        }
+        public static func methodThatThrows(willReturn: Void) -> MethodStub {
+            return Given(method: .m_methodThatThrows, products: [.return(())])
         }
         public static func methodThatReturnsAndThrows(param: Parameter<String>, willThrow: Error...) -> MethodStub {
             return Given(method: .m_methodThatReturnsAndThrows__param_param(`param`), products: willThrow.map({ StubProduct.throw($0) }))
@@ -7489,6 +7495,9 @@ open class ProtocolWithCustomAttributesMock: ProtocolWithCustomAttributes, Mock 
 			willProduce(stubber)
 			return given
         }
+        public static func methodThatTakesUser(user: Parameter<UserObject>, willReturn: Void) -> MethodStub {
+            return Given(method: .m_methodThatTakesUser__user_user(`user`), products: [.return(())])
+        }
     }
 
     public struct Verify {
@@ -10763,6 +10772,9 @@ open class ProtocolWithThrowingMethodsMock: ProtocolWithThrowingMethods, Mock {
 			willProduce(stubber)
 			return given
         }
+        public static func methodThatThrows(willReturn: Void) -> MethodStub {
+            return Given(method: .m_methodThatThrows, products: [.return(())])
+        }
         public static func methodThatReturnsAndThrows(param: Parameter<Int>, willThrow: Error...) -> MethodStub {
             return Given(method: .m_methodThatReturnsAndThrows__param_param(`param`), products: willThrow.map({ StubProduct.throw($0) }))
         }
@@ -12443,6 +12455,9 @@ open class ShouldAllowNoStubDefinedMock: ShouldAllowNoStubDefined, Mock, StaticM
 			willProduce(stubber)
 			return given
         }
+        public static func throwingVoidMethod(_ key: Parameter<String>, willReturn: Void) -> StaticMethodStub {
+            return StaticGiven(method: .sm_throwingVoidMethod__key(`key`), products: [.return(())])
+        }
     }
 
     public struct StaticVerify {
@@ -12578,6 +12593,9 @@ open class ShouldAllowNoStubDefinedMock: ShouldAllowNoStubDefined, Mock, StaticM
 			let stubber = given.stubThrows(for: (Void).self)
 			willProduce(stubber)
 			return given
+        }
+        public static func throwingVoidMethod(_ key: Parameter<String>, willReturn: Void) -> MethodStub {
+            return Given(method: .m_throwingVoidMethod__key(`key`), products: [.return(())])
         }
     }
 

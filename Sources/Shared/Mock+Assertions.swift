@@ -149,27 +149,23 @@ public func Failure(_ message: String) -> Swift.Never {
 
 /// [Internal] Used for handling fatal errors inside library.
 public struct FatalErrorUtil {
-    /// [Internal] Handler
-    private static var handler: (String) -> Never = {
-        print($0)
-        exit(0)
-    }
-    /// [Internal] Default handler
-    private static var defalutHandler: (String) -> Never = {
-        print($0)
-        exit(0)
+    /// [Internal] Handler — called before the process terminates, e.g. to record a test issue.
+    private static var handler: (String) -> Void = defaultHandler
+
+    private static let defaultHandler: (String) -> Void = { message in
+        print(message)
     }
 
-    /// [Internal] Override handling error handler
+    /// [Internal] Override the pre-termination handler.
     ///
-    /// - Parameter new: New handler
-    public static func set(_ new: @escaping (String) -> Never) {
+    /// - Parameter new: Replacement handler. Called before `Swift.fatalError`.
+    public static func set(_ new: @escaping (String) -> Void) {
         handler = new
     }
 
     /// [Internal] Restores default handler
     public static func restore() {
-        handler = defalutHandler
+        handler = defaultHandler
     }
 
     /// [Internal] Perform fatal error handler
@@ -177,6 +173,7 @@ public struct FatalErrorUtil {
     /// - Parameter message: Message
     public static func fatalError(_ message: String) -> Never {
         handler(message)
+        preconditionFailure(message)
     }
 }
 

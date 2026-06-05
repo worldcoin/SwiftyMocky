@@ -107,6 +107,35 @@ struct MockPropertySuite {
     }
 }
 
+@Suite("throws Void — succeed stub")
+struct ThrowsVoidSucceedSuite {
+
+    @Test func succeedStub_withKey_doesNotThrow() throws {
+        let mock = STAuthenticatorMock()
+        Given(mock, .authenticate(for: .value("key"), willReturn: ()))
+        #expect(throws: Never.self) {
+            try mock.authenticate(for: "key")
+        }
+    }
+
+    @Test func succeedStub_noParams_doesNotThrow() throws {
+        let mock = STAuthenticatorMock()
+        Given(mock, .authenticate(willReturn: ()))
+        #expect(throws: Never.self) {
+            try mock.authenticate()
+        }
+    }
+
+    @Test func throwStub_stillThrows() throws {
+        struct AuthError: Error {}
+        let mock = STAuthenticatorMock()
+        Given(mock, .authenticate(for: .any, willThrow: AuthError()))
+        #expect(throws: AuthError.self) {
+            try mock.authenticate(for: "key")
+        }
+    }
+}
+
 @Suite("Verify failure messages via Issue.record")
 struct VerifyFailureSuite {
 

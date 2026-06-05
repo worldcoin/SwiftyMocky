@@ -182,6 +182,9 @@ open class GenerationCommandMock: GenerationCommand, Mock {
 			willProduce(stubber)
 			return given
         }
+        public static func generate(disableCache: Parameter<Bool>, verbose: Parameter<Bool>, willReturn: Void) -> MethodStub {
+            return Given(method: .m_generate__disableCache_disableCacheverbose_verbose(`disableCache`, `verbose`), products: [.return(())])
+        }
         public static func generate(mockName: Parameter<String>, disableCache: Parameter<Bool>, verbose: Parameter<Bool>, watch: Parameter<Bool>, willThrow: Error...) -> MethodStub {
             return Given(method: .m_generate__mockName_mockNamedisableCache_disableCacheverbose_verbosewatch_watch(`mockName`, `disableCache`, `verbose`, `watch`), products: willThrow.map({ StubProduct.throw($0) }))
         }
@@ -191,6 +194,9 @@ open class GenerationCommandMock: GenerationCommand, Mock {
 			let stubber = given.stubThrows(for: (Void).self)
 			willProduce(stubber)
 			return given
+        }
+        public static func generate(mockName: Parameter<String>, disableCache: Parameter<Bool>, verbose: Parameter<Bool>, watch: Parameter<Bool>, willReturn: Void) -> MethodStub {
+            return Given(method: .m_generate__mockName_mockNamedisableCache_disableCacheverbose_verbosewatch_watch(`mockName`, `disableCache`, `verbose`, `watch`), products: [.return(())])
         }
         public static func updateAllImports(willThrow: Error...) -> MethodStub {
             return Given(method: .m_updateAllImports, products: willThrow.map({ StubProduct.throw($0) }))
@@ -202,6 +208,9 @@ open class GenerationCommandMock: GenerationCommand, Mock {
 			willProduce(stubber)
 			return given
         }
+        public static func updateAllImports(willReturn: Void) -> MethodStub {
+            return Given(method: .m_updateAllImports, products: [.return(())])
+        }
         public static func updateImports(forMockNamed name: Parameter<String>, willThrow: Error...) -> MethodStub {
             return Given(method: .m_updateImports__forMockNamed_name(`name`), products: willThrow.map({ StubProduct.throw($0) }))
         }
@@ -211,6 +220,9 @@ open class GenerationCommandMock: GenerationCommand, Mock {
 			let stubber = given.stubThrows(for: (Void).self)
 			willProduce(stubber)
 			return given
+        }
+        public static func updateImports(forMockNamed name: Parameter<String>, willReturn: Void) -> MethodStub {
+            return Given(method: .m_updateImports__forMockNamed_name(`name`), products: [.return(())])
         }
     }
 

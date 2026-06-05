@@ -20,3 +20,9 @@ protocol STTransformer {
     func transform(_ input: Int) -> String
     func transform(_ input: String) -> Int?
 }
+
+//sourcery: AutoMockable
+protocol STAuthenticator {
+    func authenticate(for key: String) throws
+    func authenticate() throws
+}
