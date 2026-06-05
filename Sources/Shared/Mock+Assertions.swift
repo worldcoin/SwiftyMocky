@@ -7,10 +7,11 @@ import Foundation
 /// - Parameters:
 ///   - object: Mock instance
 ///   - method: Method signature with wrapped parameters (`Parameter`)
-///   - file: for XCTest print purposes
-///   - line: for XCTest print purposes
-public func Verify<T: Mock>(_ object: T, _ method: T.Verify, file: StaticString = #file, line: UInt = #line) {
-    object.verify(method, count: .moreOrEqual(to: 1), file: file, line: line)
+///   - file: for XCTest/Swift Testing print purposes
+///   - fileID: for Swift Testing print purposes
+///   - line: for XCTest/Swift Testing print purposes
+public func Verify<T: Mock>(_ object: T, _ method: T.Verify, file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
+    object.verify(method, count: .moreOrEqual(to: 1), file: file, fileID: fileID, line: line)
 }
 
 // MARK: - At least once static member called
@@ -20,10 +21,11 @@ public func Verify<T: Mock>(_ object: T, _ method: T.Verify, file: StaticString 
 /// - Parameters:
 ///   - object: Mock type
 ///   - method: Method signature with wrapped parameters (`Parameter`)
-///   - file: for XCTest print purposes
-///   - line: for XCTest print purposes
-public func Verify<T: StaticMock>(_ type: T.Type, _ method: T.StaticVerify, file: StaticString = #file, line: UInt = #line) {
-    T.verify(method, count: .moreOrEqual(to: 1), file: file, line: line)
+///   - file: for XCTest/Swift Testing print purposes
+///   - fileID: for Swift Testing print purposes
+///   - line: for XCTest/Swift Testing print purposes
+public func Verify<T: StaticMock>(_ type: T.Type, _ method: T.StaticVerify, file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
+    T.verify(method, count: .moreOrEqual(to: 1), file: file, fileID: fileID, line: line)
 }
 
 // MARK: - Instance member called with explicit count
@@ -34,10 +36,11 @@ public func Verify<T: StaticMock>(_ type: T.Type, _ method: T.StaticVerify, file
 ///   - object: Mock instance
 ///   - count: Number of invocations
 ///   - method: Method signature with wrapped parameters (`Parameter`)
-///   - file: for XCTest print purposes
-///   - line: for XCTest print purposes
-public func Verify<T: Mock>(_ object: T, _ count: Count, _ method: T.Verify, file: StaticString = #file, line: UInt = #line) {
-    object.verify(method, count: count, file: file, line: line)
+///   - file: for XCTest/Swift Testing print purposes
+///   - fileID: for Swift Testing print purposes
+///   - line: for XCTest/Swift Testing print purposes
+public func Verify<T: Mock>(_ object: T, _ count: Count, _ method: T.Verify, file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
+    object.verify(method, count: count, file: file, fileID: fileID, line: line)
 }
 
 // MARK: - Static member called with explicit count
@@ -48,10 +51,11 @@ public func Verify<T: Mock>(_ object: T, _ count: Count, _ method: T.Verify, fil
 ///   - object: Mock type
 ///   - count: Number of invocations
 ///   - method: Static method signature with wrapped parameters (`Parameter`)
-///   - file: for XCTest print purposes
-///   - line: for XCTest print purposes
-public func Verify<T: StaticMock>(_ type: T.Type, _ count: Count, _ method: T.StaticVerify, file: StaticString = #file, line: UInt = #line) {
-    T.verify(method, count: count, file: file, line: line)
+///   - file: for XCTest/Swift Testing print purposes
+///   - fileID: for Swift Testing print purposes
+///   - line: for XCTest/Swift Testing print purposes
+public func Verify<T: StaticMock>(_ type: T.Type, _ count: Count, _ method: T.StaticVerify, file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
+    T.verify(method, count: count, file: file, fileID: fileID, line: line)
 }
 
 // MARK: - Given
