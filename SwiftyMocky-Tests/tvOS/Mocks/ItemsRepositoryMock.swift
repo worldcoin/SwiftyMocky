@@ -245,7 +245,7 @@ class ItemsRepositoryMock: ItemsRepository, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -253,7 +253,7 @@ class ItemsRepositoryMock: ItemsRepository, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {

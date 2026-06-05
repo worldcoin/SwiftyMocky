@@ -509,7 +509,7 @@ open class AMassiveTestProtocolMock: AMassiveTestProtocol, Mock, StaticMock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -517,7 +517,7 @@ open class AMassiveTestProtocolMock: AMassiveTestProtocol, Mock, StaticMock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -577,14 +577,14 @@ open class AMassiveTestProtocolMock: AMassiveTestProtocol, Mock, StaticMock {
     static private func matchingCalls(_ method: StaticVerify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    static private func givenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T {
+    static private func givenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
             Failure(message)
         }
     }
-    static private func optionalGivenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T? {
+    static private func optionalGivenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -767,7 +767,7 @@ open class AVeryAssociatedProtocolMock<T1,T2>: AVeryAssociatedProtocol, Mock whe
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -775,7 +775,7 @@ open class AVeryAssociatedProtocolMock<T1,T2>: AVeryAssociatedProtocol, Mock whe
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -1093,7 +1093,7 @@ open class AVeryGenericProtocolMock: AVeryGenericProtocol, Mock, StaticMock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -1101,7 +1101,7 @@ open class AVeryGenericProtocolMock: AVeryGenericProtocol, Mock, StaticMock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -1161,14 +1161,14 @@ open class AVeryGenericProtocolMock: AVeryGenericProtocol, Mock, StaticMock {
     static private func matchingCalls(_ method: StaticVerify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    static private func givenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T {
+    static private func givenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
             Failure(message)
         }
     }
-    static private func optionalGivenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T? {
+    static private func optionalGivenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -1820,7 +1820,7 @@ open class AllLiteralsContainerMock: AllLiteralsContainer, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -1828,7 +1828,7 @@ open class AllLiteralsContainerMock: AllLiteralsContainer, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -2034,7 +2034,7 @@ open class AnotherProtocolMock: AnotherProtocol, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -2042,7 +2042,7 @@ open class AnotherProtocolMock: AnotherProtocol, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -2489,7 +2489,7 @@ open class ComplicatedServiceTypeMock: ComplicatedServiceType, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -2497,7 +2497,7 @@ open class ComplicatedServiceTypeMock: ComplicatedServiceType, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -2661,7 +2661,7 @@ open class DateSortableMock: DateSortable, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -2669,7 +2669,7 @@ open class DateSortableMock: DateSortable, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -2875,7 +2875,7 @@ open class EdgeCasesGenericsProtocolMock: EdgeCasesGenericsProtocol, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -2883,7 +2883,7 @@ open class EdgeCasesGenericsProtocolMock: EdgeCasesGenericsProtocol, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -3024,7 +3024,7 @@ open class EmptyProtocolMock: EmptyProtocol, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -3032,7 +3032,7 @@ open class EmptyProtocolMock: EmptyProtocol, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -3219,7 +3219,7 @@ open class FailsWithAutoClosureOnSwift5Mock: FailsWithAutoClosureOnSwift5, Mock 
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -3227,7 +3227,7 @@ open class FailsWithAutoClosureOnSwift5Mock: FailsWithAutoClosureOnSwift5, Mock 
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -3522,7 +3522,7 @@ open class FailsWithKeywordArgumentsMock: FailsWithKeywordArguments, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -3530,7 +3530,7 @@ open class FailsWithKeywordArgumentsMock: FailsWithKeywordArguments, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -3862,7 +3862,7 @@ public final class FailsWithReturnedTypeBeingGenericOfSelfMock: FailsWithReturne
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -3870,7 +3870,7 @@ public final class FailsWithReturnedTypeBeingGenericOfSelfMock: FailsWithReturne
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -4041,7 +4041,7 @@ open class FailsWithUntaggedMock: FailsWithUntagged, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -4049,7 +4049,7 @@ open class FailsWithUntaggedMock: FailsWithUntagged, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -4236,7 +4236,7 @@ open class FetcherMock: Fetcher, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -4244,7 +4244,7 @@ open class FetcherMock: Fetcher, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -4431,7 +4431,7 @@ open class GenericProtocolReturningIntMock: GenericProtocolReturningInt, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -4439,7 +4439,7 @@ open class GenericProtocolReturningIntMock: GenericProtocolReturningInt, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -4664,7 +4664,7 @@ open class GenericProtocolWithTypeConstraintMock: GenericProtocolWithTypeConstra
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -4672,7 +4672,7 @@ open class GenericProtocolWithTypeConstraintMock: GenericProtocolWithTypeConstra
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -4859,7 +4859,7 @@ open class HistorySectionMapperTypeMock: HistorySectionMapperType, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -4867,7 +4867,7 @@ open class HistorySectionMapperTypeMock: HistorySectionMapperType, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -5091,7 +5091,7 @@ open class InoutProtocolMock: InoutProtocol, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -5099,7 +5099,7 @@ open class InoutProtocolMock: InoutProtocol, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -5282,7 +5282,7 @@ open class NonSwiftProtocolMock: NSObject, NonSwiftProtocol, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -5290,7 +5290,7 @@ open class NonSwiftProtocolMock: NSObject, NonSwiftProtocol, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -5722,7 +5722,7 @@ open class ProtocolMethodsGenericThatDifferOnlyInReturnTypeMock: ProtocolMethods
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -5730,7 +5730,7 @@ open class ProtocolMethodsGenericThatDifferOnlyInReturnTypeMock: ProtocolMethods
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -5954,7 +5954,7 @@ open class ProtocolMethodsThatDifferOnlyInReturnTypeMock: ProtocolMethodsThatDif
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -5962,7 +5962,7 @@ open class ProtocolMethodsThatDifferOnlyInReturnTypeMock: ProtocolMethodsThatDif
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -6163,7 +6163,7 @@ open class ProtocolWithAssociatedTypeMock<T>: ProtocolWithAssociatedType, Mock w
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -6171,7 +6171,7 @@ open class ProtocolWithAssociatedTypeMock<T>: ProtocolWithAssociatedType, Mock w
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -6335,7 +6335,7 @@ open class ProtocolWithAssociatedType2Mock<ValueType>: ProtocolWithAssociatedTyp
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -6343,7 +6343,7 @@ open class ProtocolWithAssociatedType2Mock<ValueType>: ProtocolWithAssociatedTyp
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -6509,7 +6509,7 @@ open class ProtocolWithAttributesMock: NSObject, ProtocolWithAttributes, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -6517,7 +6517,7 @@ open class ProtocolWithAttributesMock: NSObject, ProtocolWithAttributes, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -6848,7 +6848,7 @@ open class ProtocolWithAttributesBMock: ProtocolWithAttributesB, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -6856,7 +6856,7 @@ open class ProtocolWithAttributesBMock: ProtocolWithAttributesB, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -7062,7 +7062,7 @@ open class ProtocolWithClosuresMock: ProtocolWithClosures, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -7070,7 +7070,7 @@ open class ProtocolWithClosuresMock: ProtocolWithClosures, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -7330,7 +7330,7 @@ open class ProtocolWithConflictingMembersMock: ProtocolWithConflictingMembers, M
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -7338,7 +7338,7 @@ open class ProtocolWithConflictingMembersMock: ProtocolWithConflictingMembers, M
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -7561,7 +7561,7 @@ open class ProtocolWithCustomAttributesMock: ProtocolWithCustomAttributes, Mock 
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -7569,7 +7569,7 @@ open class ProtocolWithCustomAttributesMock: ProtocolWithCustomAttributes, Mock 
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -7756,7 +7756,7 @@ open class ProtocolWithDeprecatedMembersMock: ProtocolWithDeprecatedMembers, Moc
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -7764,7 +7764,7 @@ open class ProtocolWithDeprecatedMembersMock: ProtocolWithDeprecatedMembers, Moc
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -7961,7 +7961,7 @@ open class ProtocolWithGenericConstraintsMock<ContainedType>: ProtocolWithGeneri
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -7969,7 +7969,7 @@ open class ProtocolWithGenericConstraintsMock<ContainedType>: ProtocolWithGeneri
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -8194,7 +8194,7 @@ open class ProtocolWithGenericMethodsMock: ProtocolWithGenericMethods, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -8202,7 +8202,7 @@ open class ProtocolWithGenericMethodsMock: ProtocolWithGenericMethods, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -8389,7 +8389,7 @@ open class ProtocolWithGenericMethodsNestedMock: ProtocolWithGenericMethodsNeste
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -8397,7 +8397,7 @@ open class ProtocolWithGenericMethodsNestedMock: ProtocolWithGenericMethodsNeste
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -8579,7 +8579,7 @@ open class ProtocolWithInitializersMock: ProtocolWithInitializers, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -8587,7 +8587,7 @@ open class ProtocolWithInitializersMock: ProtocolWithInitializers, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -8760,7 +8760,7 @@ open class ProtocolWithMethodWithManyParametersMock: ProtocolWithMethodWithManyP
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -8768,7 +8768,7 @@ open class ProtocolWithMethodWithManyParametersMock: ProtocolWithMethodWithManyP
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -8962,7 +8962,7 @@ open class ProtocolWithMethodsWithGenericReturnTypeThatThrowsMock: ProtocolWithM
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -8970,7 +8970,7 @@ open class ProtocolWithMethodsWithGenericReturnTypeThatThrowsMock: ProtocolWithM
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -9217,7 +9217,7 @@ open class ProtocolWithObjcMock: NSObject, ProtocolWithObjc, Mock, StaticMock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -9225,7 +9225,7 @@ open class ProtocolWithObjcMock: NSObject, ProtocolWithObjc, Mock, StaticMock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -9285,14 +9285,14 @@ open class ProtocolWithObjcMock: NSObject, ProtocolWithObjc, Mock, StaticMock {
     static private func matchingCalls(_ method: StaticVerify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    static private func givenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T {
+    static private func givenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
             Failure(message)
         }
     }
-    static private func optionalGivenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T? {
+    static private func optionalGivenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -9646,7 +9646,7 @@ open class ProtocolWithPropertiesMock: ProtocolWithProperties, Mock, StaticMock 
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -9654,7 +9654,7 @@ open class ProtocolWithPropertiesMock: ProtocolWithProperties, Mock, StaticMock 
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -9714,14 +9714,14 @@ open class ProtocolWithPropertiesMock: ProtocolWithProperties, Mock, StaticMock 
     static private func matchingCalls(_ method: StaticVerify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    static private func givenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T {
+    static private func givenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
             Failure(message)
         }
     }
-    static private func optionalGivenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T? {
+    static private func optionalGivenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -9968,7 +9968,7 @@ open class ProtocolWithStaticMembersMock: ProtocolWithStaticMembers, Mock, Stati
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -9976,7 +9976,7 @@ open class ProtocolWithStaticMembersMock: ProtocolWithStaticMembers, Mock, Stati
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -10036,14 +10036,14 @@ open class ProtocolWithStaticMembersMock: ProtocolWithStaticMembers, Mock, Stati
     static private func matchingCalls(_ method: StaticVerify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    static private func givenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T {
+    static private func givenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
             Failure(message)
         }
     }
-    static private func optionalGivenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T? {
+    static private func optionalGivenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -10612,7 +10612,7 @@ open class ProtocolWithSubscriptsMock: ProtocolWithSubscripts, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -10620,7 +10620,7 @@ open class ProtocolWithSubscriptsMock: ProtocolWithSubscripts, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -10845,7 +10845,7 @@ open class ProtocolWithThrowingMethodsMock: ProtocolWithThrowingMethods, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -10853,7 +10853,7 @@ open class ProtocolWithThrowingMethodsMock: ProtocolWithThrowingMethods, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -11040,7 +11040,7 @@ open class ProtocolWithTuplesMock: ProtocolWithTuples, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -11048,7 +11048,7 @@ open class ProtocolWithTuplesMock: ProtocolWithTuples, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -11249,7 +11249,7 @@ open class ProtocolWithWhereAfterDefinitionMock<T>: ProtocolWithWhereAfterDefini
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -11257,7 +11257,7 @@ open class ProtocolWithWhereAfterDefinitionMock<T>: ProtocolWithWhereAfterDefini
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -11676,7 +11676,7 @@ open class SampleServiceTypeMock: SampleServiceType, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -11684,7 +11684,7 @@ open class SampleServiceTypeMock: SampleServiceType, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -12087,7 +12087,7 @@ public final class SelfConstrainedProtocolMock: SelfConstrainedProtocol, Mock, S
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -12095,7 +12095,7 @@ public final class SelfConstrainedProtocolMock: SelfConstrainedProtocol, Mock, S
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -12155,14 +12155,14 @@ public final class SelfConstrainedProtocolMock: SelfConstrainedProtocol, Mock, S
     static private func matchingCalls(_ method: StaticVerify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    static private func givenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T {
+    static private func givenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
             Failure(message)
         }
     }
-    static private func optionalGivenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T? {
+    static private func optionalGivenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -12661,7 +12661,7 @@ open class ShouldAllowNoStubDefinedMock: ShouldAllowNoStubDefined, Mock, StaticM
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -12669,7 +12669,7 @@ open class ShouldAllowNoStubDefinedMock: ShouldAllowNoStubDefined, Mock, StaticM
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -12729,14 +12729,14 @@ open class ShouldAllowNoStubDefinedMock: ShouldAllowNoStubDefined, Mock, StaticM
     static private func matchingCalls(_ method: StaticVerify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    static private func givenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T {
+    static private func givenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
             Failure(message)
         }
     }
-    static private func optionalGivenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T? {
+    static private func optionalGivenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -13092,7 +13092,7 @@ open class SimpleProtocolThatInheritsOtherProtocolsMock: SimpleProtocolThatInher
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -13100,7 +13100,7 @@ open class SimpleProtocolThatInheritsOtherProtocolsMock: SimpleProtocolThatInher
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -13394,7 +13394,7 @@ open class SimpleProtocolUsingCollectionsMock: SimpleProtocolUsingCollections, M
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -13402,7 +13402,7 @@ open class SimpleProtocolUsingCollectionsMock: SimpleProtocolUsingCollections, M
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -13600,7 +13600,7 @@ open class SimpleProtocolWithBothMethodsAndPropertiesMock: SimpleProtocolWithBot
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -13608,7 +13608,7 @@ open class SimpleProtocolWithBothMethodsAndPropertiesMock: SimpleProtocolWithBot
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -13879,7 +13879,7 @@ open class SimpleProtocolWithMethodsMock: SimpleProtocolWithMethods, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -13887,7 +13887,7 @@ open class SimpleProtocolWithMethodsMock: SimpleProtocolWithMethods, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -14128,7 +14128,7 @@ open class SimpleProtocolWithPropertiesMock: SimpleProtocolWithProperties, Mock 
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -14136,7 +14136,7 @@ open class SimpleProtocolWithPropertiesMock: SimpleProtocolWithProperties, Mock 
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -14277,7 +14277,7 @@ open class SuggestionProtocolMock: SuggestionProtocol, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -14285,7 +14285,7 @@ open class SuggestionProtocolMock: SuggestionProtocol, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -14655,7 +14655,7 @@ open class SuggestionRepositoryMock: SuggestionRepository, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -14663,7 +14663,7 @@ open class SuggestionRepositoryMock: SuggestionRepository, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -15032,7 +15032,7 @@ open class SuggestionRepositoryConstrainedToProtocolMock<Entity>: SuggestionRepo
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -15040,7 +15040,7 @@ open class SuggestionRepositoryConstrainedToProtocolMock<Entity>: SuggestionRepo
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -15261,7 +15261,7 @@ open class UnnamedAttributesProtocolMock: UnnamedAttributesProtocol, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -15269,7 +15269,7 @@ open class UnnamedAttributesProtocolMock: UnnamedAttributesProtocol, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -15499,7 +15499,7 @@ open class UserNetworkTypeMock: UserNetworkType, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -15507,7 +15507,7 @@ open class UserNetworkTypeMock: UserNetworkType, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -15714,7 +15714,7 @@ open class UserStorageTypeMock: UserStorageType, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -15722,7 +15722,7 @@ open class UserStorageTypeMock: UserStorageType, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -15946,7 +15946,7 @@ open class VariadicParametersProtocolMock: VariadicParametersProtocol, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -15954,7 +15954,7 @@ open class VariadicParametersProtocolMock: VariadicParametersProtocol, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -16142,7 +16142,7 @@ open class WithConflictingNameMock: WithConflictingName, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -16150,7 +16150,7 @@ open class WithConflictingNameMock: WithConflictingName, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -16582,7 +16582,7 @@ open class ComposedServiceMock: ComposedService, Mock {
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -16590,7 +16590,7 @@ open class ComposedServiceMock: ComposedService, Mock {
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {

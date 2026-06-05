@@ -440,7 +440,7 @@
     private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
+    private func givenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -448,7 +448,7 @@
             Failure(message)
         }
     }
-    private func optionalGivenGetterValue<T>(_ method: MethodType, _ message: String) -> T? {
+    private func optionalGivenGetterValue<ReturnType>(_ method: MethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
@@ -510,14 +510,14 @@
     static private func matchingCalls(_ method: StaticVerify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
         return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
-    static private func givenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T {
+    static private func givenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType {
         do {
             return try methodReturnValue(method).casted()
         } catch {
             Failure(message)
         }
     }
-    static private func optionalGivenGetterValue<T>(_ method: StaticMethodType, _ message: String) -> T? {
+    static private func optionalGivenGetterValue<ReturnType>(_ method: StaticMethodType, _ message: String) -> ReturnType? {
         do {
             return try methodReturnValue(method).casted()
         } catch {
