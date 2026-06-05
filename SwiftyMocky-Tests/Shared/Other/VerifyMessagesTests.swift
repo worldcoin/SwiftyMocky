@@ -242,7 +242,7 @@ class VerifyMessagesTests: XCTestCase {
     // MARK: - Helpers
 
     func expectMessage(_ expected: String) {
-        MockyAssertion.handler = { result, message, file, line in
+        MockyAssertion.handler = { result, message, file, _, line in
             guard result else { return }
             XCTAssertEqual(message, expected, file: file, line: line)
         }

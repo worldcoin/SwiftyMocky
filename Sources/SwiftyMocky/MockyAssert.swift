@@ -14,7 +14,7 @@ import Foundation
 public final class MockyAssertion {
     /// You can use it to define assertion behaviour.
     /// Leave blank to not assert at all.
-    public static var handler: ((Bool, String, StaticString, UInt) -> Void)?
+    public static var handler: ((Bool, String, StaticString, String, UInt) -> Void)?
 }
 
 /// [internal] Assertion used by mocks and Verify methods
@@ -35,7 +35,7 @@ public func MockyAssert(
         return XCTMockyAssert(expression(), message(), file: file, fileID: fileID, line: line)
     }
 
-    handler(expression(), message(), file, line)
+    handler(expression(), message(), file, fileID, line)
 }
 
 

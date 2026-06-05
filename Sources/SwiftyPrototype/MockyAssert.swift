@@ -8,7 +8,7 @@ import Foundation
 public final class MockyAssertion {
     /// You can use it to define assertion behaviour.
     /// Leave blank to not assert at all.
-    public static var handler: ((Bool, String, StaticString, UInt) -> Void)?
+    public static var handler: ((Bool, String, StaticString, String, UInt) -> Void)?
 }
 
 /// [internal] Assertion used by mocks and Verify methods
@@ -17,16 +17,18 @@ public final class MockyAssertion {
 ///   - expression: Expression to assert on
 ///   - message: Message
 ///   - file: File name (leave default)
+///   - fileID: File ID (leave default)
 ///   - line: Line (leave default)
 public func MockyAssert(
     _ expression: @autoclosure () -> Bool,
     _ message: @autoclosure () -> String = "Verify failed",
     file: StaticString = #file,
+    fileID: String = #fileID,
     line: UInt = #line
 ) {
     guard let handler = MockyAssertion.handler else {
         return assert(expression(), message(), file: file, line: line)
     }
 
-    handler(expression(), message(), file, line)
+    handler(expression(), message(), file, fileID, line)
 }
