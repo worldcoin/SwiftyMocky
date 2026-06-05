@@ -52,6 +52,10 @@ let package = Package(
             name: "RuntimeLibraryTests",
             dependencies: ["SwiftyMocky"]
         ),
+        .testTarget(
+            name: "SwiftyPrototypeTests",
+            dependencies: ["SwiftyPrototype"]
+        ),
         // CLI Executable
         .executableTarget(
             name: "SwiftyMockyCLI",
