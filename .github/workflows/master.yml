@@ -30,4 +30,4 @@ jobs:
           fastlane ios test_tvos
       - name: Run tests SwiftPM
         run: |
-          swift test
+          swift test --enable-swift-testing

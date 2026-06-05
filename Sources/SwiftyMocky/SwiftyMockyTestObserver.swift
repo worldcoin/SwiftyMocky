@@ -59,7 +59,7 @@ public class SwiftyMockyTestObserver: NSObject, XCTestObservation {
                     fileID: fileID,
                     filePath: file.description,
                     line: Int(line),
-                    column: 0
+                    column: 1
                 )
             )
             return

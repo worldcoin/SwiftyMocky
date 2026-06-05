@@ -5,6 +5,11 @@ import PackageDescription
 
 let package = Package(
     name: "swiftymocky",
+    platforms: [
+        .macOS(.v14),
+        .iOS(.v15),
+        .tvOS(.v16),
+    ],
     products: [
         // XCTest Runtime libraries
         .library(name: "SwiftyMocky", targets: ["SwiftyMocky"]),
@@ -55,6 +60,10 @@ let package = Package(
         .testTarget(
             name: "SwiftyPrototypeTests",
             dependencies: ["SwiftyPrototype"]
+        ),
+        .testTarget(
+            name: "SwiftyMockySwiftTestingTests",
+            dependencies: ["SwiftyMocky"]
         ),
         // CLI Executable
         .executableTarget(

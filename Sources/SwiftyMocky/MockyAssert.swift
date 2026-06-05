@@ -62,7 +62,7 @@ private func XCTMockyAssert(
                     fileID: fileID,
                     filePath: file.description,
                     line: Int(line),
-                    column: 0
+                    column: 1
                 )
             )
         }

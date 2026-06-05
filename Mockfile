@@ -68,6 +68,14 @@ mocky.spm:
   import:
   - Foundation
 
+mocky.swift-testing:
+  sources:
+    include:
+    - ./Tests/SwiftyMockySwiftTestingTests/TestProtocols.swift
+  output: ./Tests/SwiftyMockySwiftTestingTests/Mock.generated.swift
+  import:
+  - Foundation
+
 proto.spm:
   template: ./Sources/SwiftyPrototype/Prototype.swifttemplate
   sources:
