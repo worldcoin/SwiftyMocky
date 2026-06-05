@@ -40,11 +40,22 @@ func replacingSelf(_ value: String) -> String {
         .replacingOccurrences(of: ",Self?", with: ",\(Current.selfType)?")
 }
 
+/// Sourcery normalises `(any Foo)?` → `any Foo?` in TypeName.name.
+/// This function reverses that so the generated output is valid Swift.
+func fixExistentialOptional(_ typeName: String) -> String {
+    guard typeName.contains("any ") else { return typeName }
+    guard let regex = try? NSRegularExpression(
+        pattern: #"\bany ([A-Za-z_][A-Za-z0-9_.]*)([\?!])"#
+    ) else { return typeName }
+    let range = NSRange(typeName.startIndex..., in: typeName)
+    return regex.stringByReplacingMatches(in: typeName, range: range, withTemplate: "(any $1)$2")
+}
+
 class MethodWrapper {
     private var noStubDefinedMessage: String {
-        let methodName = method.name.condenseWhitespace()
+        let methodName = fixExistentialOptional(method.name.condenseWhitespace()
             .replacingOccurrences(of: "( ", with: "(")
-            .replacingOccurrences(of: " )", with: ")")
+            .replacingOccurrences(of: " )", with: ")"))
         return "Stub return value not specified for \(methodName). Use given"
     }
     private static var registered: [String: Int] = [:]
@@ -159,7 +170,7 @@ class MethodWrapper {
         } else if returnsGenericConstrainedToSelf {
             return "\(attributes)\(staticModifier)func \(method.shortName)\(params) \(asyncModifier)\(throwing)-> \(returnTypeReplacingSelf) "
         } else {
-            return "\(attributes)\(staticModifier)func \(method.shortName)\(params) \(asyncModifier)\(throwing)-> \(method.returnTypeName.name) "
+            return "\(attributes)\(staticModifier)func \(method.shortName)\(params) \(asyncModifier)\(throwing)-> \(fixExistentialOptional(method.returnTypeName.name)) "
         }
     }
     var invocation: String {

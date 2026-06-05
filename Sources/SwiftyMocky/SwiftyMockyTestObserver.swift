@@ -47,7 +47,8 @@ public class SwiftyMockyTestObserver: NSObject, XCTestObservation {
     ///
     /// - Parameters:
     ///   - message: Message
-    ///   - file: File
+    ///   - file: File path
+    ///   - fileID: File ID (used by Swift Testing)
     ///   - line: Line
     public static func handleFatalError(message: String, file: StaticString, fileID: String, line: UInt) {
         #if canImport(Testing)

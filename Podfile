@@ -5,23 +5,15 @@ def tests
 end
 
 target 'Mocky_Example_iOS' do
-    platform :ios, '9.0'
+    platform :ios, '15.0'
     target 'Mocky_Tests_iOS' do
         inherit! :search_paths
         tests
     end
 end
 
-target 'Mocky_Example_iOS_15' do
-    platform :ios, '15.0'
-    target 'Mocky_Tests_iOS_15' do
-        inherit! :search_paths
-        tests
-    end
-end
-
 target 'Mocky_Example_tvOS' do
-    platform :tvos, '9.0'
+    platform :tvos, '16.0'
     target 'Mocky_Tests_tvOS' do
         inherit! :search_paths
         tests
@@ -29,7 +21,7 @@ target 'Mocky_Example_tvOS' do
 end
 
 target 'Mocky_Example_macOS' do
-    platform :macos, '10.13'
+    platform :macos, '14.0'
     target 'Mocky_Tests_macOS' do
         inherit! :search_paths
         tests

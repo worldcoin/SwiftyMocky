@@ -13,16 +13,16 @@ Library that uses metaprogramming technique to generate mocks based on sources, 
   s.source           = { :git => 'https://github.com/MakeAWishFoundation/SwiftyMocky.git', :tag => s.version.to_s }
 
   s.swift_versions    = ['4.2', '5.0', '5.1', '5.1.2', '5.2', '5.3', '5.4', '5.5']
-  s.ios.deployment_target = '9.0'
-  s.tvos.deployment_target = '9.0'
-  s.macos.deployment_target = '10.10'
+  s.ios.deployment_target = '15.0'
+  s.tvos.deployment_target = '16.0'
+  s.macos.deployment_target = '14.0'
   s.preserve_paths = '*'
 
   s.source_files = 'Sources/{SwiftyMocky,Shared}/**/*.swift'
   s.resources = '{Sources/SwiftyMocky/Mock.swifttemplate}'
   s.frameworks = 'Foundation'
   s.weak_framework = "XCTest"
-  s.dependency 'Sourcery', '1.8.0'
+  s.dependency 'Sourcery', '2.3.0'
   s.pod_target_xcconfig = {
       'APPLICATION_EXTENSION_API_ONLY' => 'YES',
       'ENABLE_BITCODE' => 'NO',

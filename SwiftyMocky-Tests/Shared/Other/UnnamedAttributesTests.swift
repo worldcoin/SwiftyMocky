@@ -1,11 +1,7 @@
 import XCTest
 import SwiftyMocky
 #if os(iOS)
-    #if IOS15
-        @testable import Mocky_Example_iOS_15
-    #else
-        @testable import Mocky_Example_iOS
-    #endif
+    @testable import Mocky_Example_iOS
 #elseif os(tvOS)
     @testable import Mocky_Example_tvOS
 #else

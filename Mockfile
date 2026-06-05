@@ -9,30 +9,11 @@ mocky.iOS:
     - ./SwiftyMocky-Tests/iOS
     exclude:
     - ./SwiftyMocky-Example/Shared/Other/Excluded.generated.swift
-    - ./SwiftyMocky-Example/Shared/Swift5.5
   output: ./SwiftyMocky-Tests/iOS/Mocks/Mock.generated.swift
   targets:
   - Mocky_Tests_iOS
   testable:
   - Mocky_Example_iOS
-  import:
-  - CoreGraphics
-  - Foundation
-  - UIKit
-
-mocky.iOS.15:
-  sources:
-    include:
-    - ./SwiftyMocky-Example/Shared
-    - ./SwiftyMocky-Example/iOS
-    - ./SwiftyMocky-Tests/iOS
-    exclude:
-    - ./SwiftyMocky-Example/Shared/Other/Excluded.generated.swift
-  output: ./SwiftyMocky-Tests/iOS/Mocks/Mock.15.generated.swift
-  targets:
-  - Mocky_Tests_iOS_15
-  testable:
-  - Mocky_Example_iOS_15
   import:
   - CoreGraphics
   - Foundation

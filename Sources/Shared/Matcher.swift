@@ -209,8 +209,8 @@ public class Matcher {
     }
 
     public func onFatalFailure(_ message: String) {
-        guard let file = self.file, let line = self.line else { return }
-        Matcher.fatalErrorHandler(message, file, self.fileID ?? "", line)
+        guard let file = self.file, let fileID = self.fileID, let line = self.line else { return }
+        Matcher.fatalErrorHandler(message, file, fileID, line)
     }
 
     /// Registers comparator for given type **T**.

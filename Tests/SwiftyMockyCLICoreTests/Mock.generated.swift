@@ -1,4 +1,4 @@
-// Generated using Sourcery 1.8.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 2.3.0 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 
@@ -16,11 +16,12 @@ import PathKit
 // MARK: - GenerationCommand
 
 open class GenerationCommandMock: GenerationCommand, Mock {
-    public init(sequencing sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst, stubbing stubbingPolicy: StubbingPolicy = .wrap, file: StaticString = #file, line: UInt = #line) {
+    public init(sequencing sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst, stubbing stubbingPolicy: StubbingPolicy = .wrap, file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
         SwiftyMockyTestObserver.setup()
         self.sequencingPolicy = sequencingPolicy
         self.stubbingPolicy = stubbingPolicy
         self.file = file
+        self.fileID = fileID
         self.line = line
     }
 
@@ -33,6 +34,7 @@ open class GenerationCommandMock: GenerationCommand, Mock {
     private var methodReturnValues: [Given] = []
     private var methodPerformValues: [Perform] = []
     private var file: StaticString?
+    private var fileID: String?
     private var line: UInt?
 
     public typealias PropertyStub = Given
@@ -40,8 +42,9 @@ open class GenerationCommandMock: GenerationCommand, Mock {
     public typealias SubscriptStub = Given
 
     /// Convenience method - call setupMock() to extend debug information when failure occurs
-    public func setupMock(file: StaticString = #file, line: UInt = #line) {
+    public func setupMock(file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
         self.file = file
+        self.fileID = fileID
         self.line = line
     }
 
@@ -247,29 +250,29 @@ open class GenerationCommandMock: GenerationCommand, Mock {
         methodPerformValues.sort { $0.method.intValue() < $1.method.intValue() }
     }
 
-    public func verify(_ method: Verify, count: Count = Count.moreOrEqual(to: 1), file: StaticString = #file, line: UInt = #line) {
-        let fullMatches = matchingCalls(method, file: file, line: line)
+    public func verify(_ method: Verify, count: Count = Count.moreOrEqual(to: 1), file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
+        let fullMatches = matchingCalls(method, file: file, fileID: fileID, line: line)
         let success = count.matches(fullMatches)
         let assertionName = method.method.assertionName()
         let feedback: String = {
             guard !success else { return "" }
             return Utils.closestCallsMessage(
                 for: self.invocations.map { invocation in
-                    matcher.set(file: file, line: line)
+                    matcher.set(file: file, fileID: fileID, line: line)
                     defer { matcher.clearFileAndLine() }
                     return MethodType.compareParameters(lhs: invocation, rhs: method.method, matcher: matcher)
                 },
                 name: assertionName
             )
         }()
-        MockyAssert(success, "Expected: \(count) invocations of `\(assertionName)`, but was: \(fullMatches).\(feedback)", file: file, line: line)
+        MockyAssert(success, "Expected: \(count) invocations of `\(assertionName)`, but was: \(fullMatches).\(feedback)", file: file, fileID: fileID, line: line)
     }
 
     private func addInvocation(_ call: MethodType) {
         self.queue.sync { invocations.append(call) }
     }
     private func methodReturnValue(_ method: MethodType) throws -> StubProduct {
-        matcher.set(file: self.file, line: self.line)
+        matcher.set(file: self.file, fileID: self.fileID, line: self.line)
         defer { matcher.clearFileAndLine() }
         let candidates = sequencingPolicy.sorted(methodReturnValues, by: { $0.method.intValue() > $1.method.intValue() })
         let matched = candidates.first(where: { $0.isValid && MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher).isFullMatch })
@@ -277,18 +280,18 @@ open class GenerationCommandMock: GenerationCommand, Mock {
         return product
     }
     private func methodPerformValue(_ method: MethodType) -> Any? {
-        matcher.set(file: self.file, line: self.line)
+        matcher.set(file: self.file, fileID: self.fileID, line: self.line)
         defer { matcher.clearFileAndLine() }
         let matched = methodPerformValues.reversed().first { MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher).isFullMatch }
         return matched?.performs
     }
-    private func matchingCalls(_ method: MethodType, file: StaticString?, line: UInt?) -> [MethodType] {
-        matcher.set(file: file ?? self.file, line: line ?? self.line)
+    private func matchingCalls(_ method: MethodType, file: StaticString?, fileID: String?, line: UInt?) -> [MethodType] {
+        matcher.set(file: file ?? self.file, fileID: fileID ?? self.fileID, line: line ?? self.line)
         defer { matcher.clearFileAndLine() }
         return invocations.filter { MethodType.compareParameters(lhs: $0, rhs: method, matcher: matcher).isFullMatch }
     }
-    private func matchingCalls(_ method: Verify, file: StaticString?, line: UInt?) -> Int {
-        return matchingCalls(method.method, file: file, line: line).count
+    private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
+        return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
     private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
         do {
@@ -306,19 +309,20 @@ open class GenerationCommandMock: GenerationCommand, Mock {
         }
     }
     private func onFatalFailure(_ message: String) {
-        guard let file = self.file, let line = self.line else { return } // Let if fail if cannot handle gratefully
-        SwiftyMockyTestObserver.handleFatalError(message: message, file: file, line: line)
+        guard let file = self.file, let fileID = self.fileID, let line = self.line else { return } // Let it fail if cannot handle gracefully
+        SwiftyMockyTestObserver.handleFatalError(message: message, file: file, fileID: fileID, line: line)
     }
 }
 
 // MARK: - InstanceFactory
 
 open class InstanceFactoryMock: InstanceFactory, Mock {
-    public init(sequencing sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst, stubbing stubbingPolicy: StubbingPolicy = .wrap, file: StaticString = #file, line: UInt = #line) {
+    public init(sequencing sequencingPolicy: SequencingPolicy = .lastWrittenResolvedFirst, stubbing stubbingPolicy: StubbingPolicy = .wrap, file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
         SwiftyMockyTestObserver.setup()
         self.sequencingPolicy = sequencingPolicy
         self.stubbingPolicy = stubbingPolicy
         self.file = file
+        self.fileID = fileID
         self.line = line
     }
 
@@ -331,6 +335,7 @@ open class InstanceFactoryMock: InstanceFactory, Mock {
     private var methodReturnValues: [Given] = []
     private var methodPerformValues: [Perform] = []
     private var file: StaticString?
+    private var fileID: String?
     private var line: UInt?
 
     public typealias PropertyStub = Given
@@ -338,8 +343,9 @@ open class InstanceFactoryMock: InstanceFactory, Mock {
     public typealias SubscriptStub = Given
 
     /// Convenience method - call setupMock() to extend debug information when failure occurs
-    public func setupMock(file: StaticString = #file, line: UInt = #line) {
+    public func setupMock(file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
         self.file = file
+        self.fileID = fileID
         self.line = line
     }
 
@@ -482,29 +488,29 @@ open class InstanceFactoryMock: InstanceFactory, Mock {
         methodPerformValues.sort { $0.method.intValue() < $1.method.intValue() }
     }
 
-    public func verify(_ method: Verify, count: Count = Count.moreOrEqual(to: 1), file: StaticString = #file, line: UInt = #line) {
-        let fullMatches = matchingCalls(method, file: file, line: line)
+    public func verify(_ method: Verify, count: Count = Count.moreOrEqual(to: 1), file: StaticString = #file, fileID: String = #fileID, line: UInt = #line) {
+        let fullMatches = matchingCalls(method, file: file, fileID: fileID, line: line)
         let success = count.matches(fullMatches)
         let assertionName = method.method.assertionName()
         let feedback: String = {
             guard !success else { return "" }
             return Utils.closestCallsMessage(
                 for: self.invocations.map { invocation in
-                    matcher.set(file: file, line: line)
+                    matcher.set(file: file, fileID: fileID, line: line)
                     defer { matcher.clearFileAndLine() }
                     return MethodType.compareParameters(lhs: invocation, rhs: method.method, matcher: matcher)
                 },
                 name: assertionName
             )
         }()
-        MockyAssert(success, "Expected: \(count) invocations of `\(assertionName)`, but was: \(fullMatches).\(feedback)", file: file, line: line)
+        MockyAssert(success, "Expected: \(count) invocations of `\(assertionName)`, but was: \(fullMatches).\(feedback)", file: file, fileID: fileID, line: line)
     }
 
     private func addInvocation(_ call: MethodType) {
         self.queue.sync { invocations.append(call) }
     }
     private func methodReturnValue(_ method: MethodType) throws -> StubProduct {
-        matcher.set(file: self.file, line: self.line)
+        matcher.set(file: self.file, fileID: self.fileID, line: self.line)
         defer { matcher.clearFileAndLine() }
         let candidates = sequencingPolicy.sorted(methodReturnValues, by: { $0.method.intValue() > $1.method.intValue() })
         let matched = candidates.first(where: { $0.isValid && MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher).isFullMatch })
@@ -512,18 +518,18 @@ open class InstanceFactoryMock: InstanceFactory, Mock {
         return product
     }
     private func methodPerformValue(_ method: MethodType) -> Any? {
-        matcher.set(file: self.file, line: self.line)
+        matcher.set(file: self.file, fileID: self.fileID, line: self.line)
         defer { matcher.clearFileAndLine() }
         let matched = methodPerformValues.reversed().first { MethodType.compareParameters(lhs: $0.method, rhs: method, matcher: matcher).isFullMatch }
         return matched?.performs
     }
-    private func matchingCalls(_ method: MethodType, file: StaticString?, line: UInt?) -> [MethodType] {
-        matcher.set(file: file ?? self.file, line: line ?? self.line)
+    private func matchingCalls(_ method: MethodType, file: StaticString?, fileID: String?, line: UInt?) -> [MethodType] {
+        matcher.set(file: file ?? self.file, fileID: fileID ?? self.fileID, line: line ?? self.line)
         defer { matcher.clearFileAndLine() }
         return invocations.filter { MethodType.compareParameters(lhs: $0, rhs: method, matcher: matcher).isFullMatch }
     }
-    private func matchingCalls(_ method: Verify, file: StaticString?, line: UInt?) -> Int {
-        return matchingCalls(method.method, file: file, line: line).count
+    private func matchingCalls(_ method: Verify, file: StaticString?, fileID: String?, line: UInt?) -> Int {
+        return matchingCalls(method.method, file: file, fileID: fileID, line: line).count
     }
     private func givenGetterValue<T>(_ method: MethodType, _ message: String) -> T {
         do {
@@ -541,8 +547,8 @@ open class InstanceFactoryMock: InstanceFactory, Mock {
         }
     }
     private func onFatalFailure(_ message: String) {
-        guard let file = self.file, let line = self.line else { return } // Let if fail if cannot handle gratefully
-        SwiftyMockyTestObserver.handleFatalError(message: message, file: file, line: line)
+        guard let file = self.file, let fileID = self.fileID, let line = self.line else { return } // Let it fail if cannot handle gracefully
+        SwiftyMockyTestObserver.handleFatalError(message: message, file: file, fileID: fileID, line: line)
     }
 }
 

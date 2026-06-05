@@ -25,7 +25,7 @@ jobs:
           fastlane ios test
       - name: Run tests tvOS
         run: |
-          fastlane tvos test
+          fastlane ios test_tvos
       - name: Run tests SwiftPM
         run: |
           swift test

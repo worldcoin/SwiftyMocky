@@ -8,14 +8,12 @@ platform :ios do
         scan(
             scheme: "Mocky_Tests_iOS",
             workspace: "./SwiftyMocky.xcworkspace",
-            devices: ["iPhone 11 Pro"]
+            devices: ["iPhone 17"]
         )
     end
-end
 
-platform :tvos do
-    desc "Runs all the tests"
-    lane :test do
+    desc "Runs all the tvOS tests"
+    lane :test_tvos do
         scan(
             scheme: "Mocky_Tests_tvOS",
             workspace: "./SwiftyMocky.xcworkspace",

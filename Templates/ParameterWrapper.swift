@@ -75,10 +75,11 @@ class ParameterWrapper {
     }
 
     func asMethodArgument() -> String {
+        let typeName = fixExistentialOptional("\(parameter.typeName)")
         if parameter.argumentLabel != parameter.name {
-            return "\(parameter.argumentLabel ?? "_") \(parameter.name): \(parameter.typeName)"
+            return "\(parameter.argumentLabel ?? "_") \(parameter.name): \(typeName)"
         } else {
-            return "\(parameter.name): \(parameter.typeName)"
+            return "\(parameter.name): \(typeName)"
         }
     }
     func labelAndName() -> String {

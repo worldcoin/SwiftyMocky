@@ -11,20 +11,23 @@ class TypeWrapper {
     var unwrappedReplacingSelf: String {
         return replacingSelf(unwrap: true)
     }
+    private func wrapIfExistential(_ name: String) -> String {
+        return name.hasPrefix("any ") ? "(\(name))" : name
+    }
     var stripped: String {
         if type.isImplicitlyUnwrappedOptional {
-            return "\(vPref)\(unwrappedReplacingSelf)?\(vSuff)"
+            return "\(vPref)\(wrapIfExistential(unwrappedReplacingSelf))?\(vSuff)"
         } else if type.isOptional {
-            return "\(vPref)\(unwrappedReplacingSelf)?\(vSuff)"
+            return "\(vPref)\(wrapIfExistential(unwrappedReplacingSelf))?\(vSuff)"
         } else {
             return "\(vPref)\(unwrappedReplacingSelf)\(vSuff)"
         }
     }
     var nestedParameter: String {
         if type.isImplicitlyUnwrappedOptional {
-            return "Parameter<\(vPref)\(unwrappedReplacingSelf)?\(vSuff)>"
+            return "Parameter<\(vPref)\(wrapIfExistential(unwrappedReplacingSelf))?\(vSuff)>"
         } else if type.isOptional {
-            return "Parameter<\(vPref)\(unwrappedReplacingSelf)?\(vSuff)>"
+            return "Parameter<\(vPref)\(wrapIfExistential(unwrappedReplacingSelf))?\(vSuff)>"
         } else {
             return "Parameter<\(vPref)\(unwrappedReplacingSelf)\(vSuff)>"
         }
@@ -80,7 +83,7 @@ class TypeWrapper {
 
     func replacingSelf(unwrap: Bool = false) -> String {
         guard isSelfTypeRecursive() else {
-            return unwrap ? self.unwrapped : "\(type)"
+            return unwrap ? self.unwrapped : fixExistentialOptional("\(type)")
         }
 
         if isSelfType {
@@ -117,7 +120,7 @@ class TypeWrapper {
             let value = "(\(inner)) \(throwing)-> \(returnType)"
             return value
         } else {
-            return (unwrap ? self.unwrapped : "\(type)")
+            return (unwrap ? self.unwrapped : fixExistentialOptional("\(type)"))
         }
     }
 

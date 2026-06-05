@@ -32,7 +32,7 @@ class VariableWrapper {
     var prototype: String {
         let staticModifier = variable.isStatic ? "static " : ""
 
-        return "\(attributes)\(staticModifier)var \(variable.name): \(variable.typeName.name) {" +
+        return "\(attributes)\(staticModifier)var \(variable.name): \(fixExistentialOptional(variable.typeName.name)) {" +
             "\(getter)" +
             "\(setter)" +
         "\n\t}"

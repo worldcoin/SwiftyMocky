@@ -2069,8 +2069,8 @@ _%>
         }
     }
     private func onFatalFailure(_ message: String) {
-        guard let file = self.file, let line = self.line else { return } // Let if fail if cannot handle gratefully
-        SwiftyMockyTestObserver.handleFatalError(message: message, file: file, line: line)
+        guard let file = self.file, let fileID = self.fileID, let line = self.line else { return } // Let it fail if cannot handle gracefully
+        SwiftyMockyTestObserver.handleFatalError(message: message, file: file, fileID: fileID, line: line)
     }
   <%# ================================================== STATIC MOCK METHODS -%><%_ -%>
     <%_ if conformsToStaticMock { -%>
